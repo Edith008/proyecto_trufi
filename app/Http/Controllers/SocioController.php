@@ -18,24 +18,21 @@ class SocioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $socios = Socio::paginate();
-
-        return view('socio.index', compact('socios'))
+        $buscarpor= $request->get('buscarpor');
+        $socios = Socio::where('nombre','like','%'.$buscarpor.'%')
+                         ->orWhere('ci','like','%'.$buscarpor.'%')->paginate();
+        return view('socio.index', compact('socios','buscarpor'))
             ->with('i', (request()->input('page', 1) - 1) * $socios->perPage());
     }
 
     public function pdf()
     {
         $socios = Socio::paginate();
-
         $pdf = PDF::loadView('socio.pdf',['socios'=>$socios]);
-       // $pdf->loadHTML('<h1> test </h1>');
-        //return $pdf->stream();
         return $pdf->download('_socios.pdf');
 
-    //    return view('socio.pdf', compact('socios'));   
     }
 
 

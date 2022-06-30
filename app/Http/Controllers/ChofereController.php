@@ -17,11 +17,12 @@ class ChofereController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $choferes = Chofere::paginate();
-
-        return view('chofere.index', compact('choferes'))
+        $buscarpor= $request->get('buscarpor');
+        $choferes = Chofere::where('nombre','like','%'.$buscarpor.'%')
+                             ->orWhere('ci','like','%'.$buscarpor.'%')->paginate();
+        return view('chofere.index', compact('choferes','buscarpor'))
             ->with('i', (request()->input('page', 1) - 1) * $choferes->perPage());
     }
 

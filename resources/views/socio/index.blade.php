@@ -14,6 +14,10 @@
 
                             <span id="card_title">
                                 {{ __('Socio') }}
+                                <form class="d-flex">
+                                    <input name="buscarpor" class="form-control me-2" type="search" placeholder="Buscar" aria-label="search" value="{{ $buscarpor }}">
+                                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                                </form>
                             </span>
 
                              <div class="float-right">

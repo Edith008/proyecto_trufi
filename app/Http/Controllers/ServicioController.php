@@ -21,11 +21,13 @@ class ServicioController extends Controller
     // protected $dti;
     // protected $dtf;
 
-    public function index()
+    public function index(Request $request)
     {
-        $servicios = Servicio::paginate();
+        $buscarpor= $request->get('buscarpor');
+        $servicios = Servicio::where('trufi_id','like','%'.$buscarpor.'%')
+                              ->orWhere('fecha','like','%'.$buscarpor.'%')->paginate();
 
-        return view('servicio.index', compact('servicios'))
+        return view('servicio.index', compact('servicios','buscarpor'))
             ->with('i', (request()->input('page', 1) - 1) * $servicios->perPage());
     }
 
