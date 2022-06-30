@@ -36,7 +36,7 @@
                                     <tr>
                                         <th>No</th>
                                         
-										<th>Ruta Id</th>
+										<th>Ruta</th>
 										<th>Nombre</th>
 
                                         <th></th>

@@ -3,22 +3,22 @@
         
         <div class="form-group">
             {{ Form::label('INTERNO') }}
-            {{ Form::select('trufi_id', $trufis , $servicio->trufi_id, ['class' => 'form-control' . ($errors->has('trufi_id') ? ' is-invalid' : ''), 'placeholder' => 'Elegir interno']) }}
+            {{ Form::text('trufi_id', $servicio->trufi_id, ['class' => 'form-control' . ($errors->has('trufi_id') ? ' is-invalid' : ''), 'readonly']) }}
             {!! $errors->first('trufi_id', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('HORA DE SALIDA') }}
-            {{ Form::text('hsalida', $servicio->hsalida, ['class' => 'form-control' . ($errors->has('hsalida') ? ' is-invalid' : ''), 'Value' => $salida, 'readonly']) }}
+            {{ Form::text('hsalida', $servicio->hsalida, ['class' => 'form-control' . ($errors->has('hsalida') ? ' is-invalid' : ''), 'readonly']) }}
             {!! $errors->first('hsalida', '<div class="invalid-feedback">:message</div>') !!}
         </div>
-        <!-- <div class="form-group">
-            {{ Form::label('hllegada') }}
-            {{ Form::text('hllegada', $servicio->hllegada, ['class' => 'form-control' . ($errors->has('hllegada') ? ' is-invalid' : ''), 'readonly']) }}
+        <div class="form-group">
+            {{ Form::label('HORA DE LLEGADA') }}
+            {{ Form::text('hllegada', $servicio->hllegada, ['class' => 'form-control' . ($errors->has('hllegada') ? ' is-invalid' : ''), 'Value' => $llegada, 'readonly']) }}
             {!! $errors->first('hllegada', '<div class="invalid-feedback">:message</div>') !!}
-        </div> -->
+        </div>
         <div class="form-group">
             {{ Form::label('FECHA') }}
-            {{ Form::text('fecha', $servicio->fecha, ['class' => 'form-control' . ($errors->has('fecha') ? ' is-invalid' : ''), 'Value' => $fecha, 'readonly']) }}
+            {{ Form::text('fecha', $servicio->fecha, ['class' => 'form-control' . ($errors->has('fecha') ? ' is-invalid' : ''), 'readonly']) }}
             {!! $errors->first('fecha', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
@@ -29,6 +29,6 @@
 
     </div>
     <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">MARCAR SALIDA</button>
+        <button type="submit" class="btn btn-primary">MARCAR LLEGADA</button>
     </div>
 </div>

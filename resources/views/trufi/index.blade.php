@@ -18,11 +18,11 @@
 
                              <div class="float-right">
                              <a href="{{ route('trufis.pdf') }}" class="btn btn-primary btn-sm"  data-placement="left">
-                                  {{ __('PDF') }}
+                                  {{ __('Generar PDF') }}
                                 </a>
 &nbsp; 
                                 <a href="{{ route('trufis.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Crear Trufi') }}
+                                  {{ __('NUEVO TRUFI') }}
                                 </a>
                               </div>
                         </div>
@@ -38,11 +38,11 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
+                                        <th>Nº</th>
                                         
-										<th>Chofer Id</th>
-										<th>Vehiculo Id</th>
-										<th>Gruporuta Id</th>
+										<th>CHOFER</th>
+										<th>VEHICULO</th>
+										<th>GRUPO</th>
 
                                         <th></th>
                                     </tr>

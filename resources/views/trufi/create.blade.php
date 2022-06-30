@@ -13,7 +13,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Create Trufi</span>
+                        <span class="card-title">Llenar el formulario con la información del nuevo trufi</span>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('trufis.store') }}"  role="form" enctype="multipart/form-data">

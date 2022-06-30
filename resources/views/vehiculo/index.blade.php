@@ -41,7 +41,7 @@
                                     <tr>
                                         <th>No</th>
                                         
-										<th>Socio Id</th>
+										<th>Socio</th>
 										<th>Marca</th>
 										<th>Matricula</th>
 										<th>Modelo</th>

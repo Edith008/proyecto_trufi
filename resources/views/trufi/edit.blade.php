@@ -13,7 +13,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Update Trufi</span>
+                        <span class="card-title">Actualizar los datos del trufi</span>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('trufis.update', $trufi->id) }}"  role="form" enctype="multipart/form-data">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Servicio;
 use App\Models\Trufi;
 use Illuminate\Http\Request;
+use Carbon\carbon;
 
 /**
  * Class ServicioController
@@ -17,6 +18,9 @@ class ServicioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // protected $dti;
+    // protected $dtf;
+
     public function index()
     {
         $servicios = Servicio::paginate();
@@ -35,7 +39,15 @@ class ServicioController extends Controller
         $servicio = new Servicio();
         $trufis = Trufi::pluck('id','id');
 
-        return view('servicio.create', compact('servicio','trufis'));
+        $TiempoActual = Carbon::now();
+        $salida = $TiempoActual->toTimeString();
+        $fecha = $TiempoActual->toDateString();
+        //$llegada = '00:00:00';
+
+        //echo $dt->toTimeString();
+
+
+        return view('servicio.create', compact('servicio','trufis','salida','fecha'));
     }
 
     /**
@@ -78,7 +90,12 @@ class ServicioController extends Controller
         $servicio = Servicio::find($id);
         $trufis = Trufi::pluck('id','id');
 
-        return view('servicio.edit', compact('servicio','trufis'));
+        // $salida = $this->dti->toTimeString();
+
+        $TiempoActual = Carbon::now();
+        $llegada = $TiempoActual->toTimeString();
+
+        return view('servicio.edit', compact('servicio','trufis','llegada'));
     }
 
     /**

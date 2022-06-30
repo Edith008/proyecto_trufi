@@ -18,7 +18,7 @@
 
                              <div class="float-right">
                                 <a href="{{ route('servicios.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                  {{ __('NUEVA SALIDA') }}
                                 </a>
                               </div>
                         </div>
@@ -34,14 +34,14 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>Registro</th>
+                                        <th>Nº Registro</th>
                                         
 										<th>INTERNO</th>
 										<th>CHOFER</th>
-										<th>Hora SALIDA</th>
-										<th>Hora LLEGADA</th>
+										<th>SALIDA</th>
+										<th>LLEGADA</th>
 										<th>FECHA</th>
-										<th>Observaciones</th>
+										<th>OBSERVACIONES</th>
 
                                         <th></th>
                                     </tr>
@@ -60,11 +60,11 @@
 
                                             <td>
                                                 <form action="{{ route('servicios.destroy',$servicio->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('servicios.show',$servicio->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('servicios.edit',$servicio->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('servicios.show',$servicio->id) }}"><i class="fa fa-fw fa-eye"></i> Ver</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('servicios.edit',$servicio->id) }}"><i class="fa fa-fw fa-edit"></i> Marcar Llegada</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Eliminar</button>
                                                 </form>
                                             </td>
                                         </tr>

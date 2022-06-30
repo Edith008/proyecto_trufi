@@ -11,25 +11,25 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">Show Trufi</span>
+                            <span class="card-title">Informacion completa del Trufi</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('trufis.index') }}"> Back</a>
+                            <a class="btn btn-primary" href="{{ route('trufis.index') }}"> Volver</a>
                         </div>
                     </div>
 
                     <div class="card-body">
                         
                         <div class="form-group">
-                            <strong>Chofer Id:</strong>
+                            <strong>Chofer:</strong>
                             {{ $trufi->chofere->nombre }}
                         </div>
                         <div class="form-group">
-                            <strong>Vehiculo Id:</strong>
+                            <strong>Vehiculo:</strong>
                             {{ $trufi->vehiculo->matricula }}
                         </div>
                         <div class="form-group">
-                            <strong>Gruporuta Id:</strong>
+                            <strong>Grupo:</strong>
                             {{ $trufi->gruporuta->nombre }}
                         </div>
 
