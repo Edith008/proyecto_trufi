@@ -80,7 +80,7 @@
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
-                                <a class="nav-link" href="{{ route('multas.index') }}">{{ __('Gestionar Servicio Transporte') }}</a>
+                                <a class="nav-link" href="{{ route('servicios.index') }}">{{ __('Gestionar Servicio Transporte') }}</a>
                                 <a class="nav-link" href="{{ route('vehiculos.index') }}">{{ __('Gestionar Vehiculo') }}</a>
                                 <a class="nav-link" href="{{ route('trufis.index') }}">{{ __('Gestionar Trufi') }}</a>
                                 <a class="nav-link" href="{{ route('gruporutas.index') }}">{{ __('Gestionar Grupo Ruta') }}</a>

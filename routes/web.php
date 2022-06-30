@@ -39,5 +39,7 @@ Route::resource('vehiculos', App\Http\Controllers\VehiculoController::class);
 Route::resource('gruporutas', App\Http\Controllers\GruporutaController::class);
 Route::resource('trufis', App\Http\Controllers\TrufiController::class);
 
+Route::resource('servicios', App\Http\Controllers\ServicioController::class);
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
