@@ -13,10 +13,18 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Choferes') }}
+                                {{ __('  Choferes') }}
+
+                                <form class="d-flex">
+                                    <input name="buscarpor" class="form-control me-2" type="search" placeholder="Buscar" aria-label="search" value="{{ $buscarpor }}">
+                                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                                </form>
                             </span>
+                            
+
 
                              <div class="float-right">
+
                                 <a href="{{ route('choferes.pdf') }}" class="btn btn-primary btn-sm "  data-placement="left">
                                   {{ __('PDF') }}
                                 </a>
@@ -35,6 +43,7 @@
 
                     <div class="card-body">
                         <div class="table-responsive">
+
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
