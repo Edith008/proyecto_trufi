@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Multa;
 use App\Models\Socio;
 use Illuminate\Http\Request;
+use PDF;
 
 /**
  * Class MultaController
@@ -24,6 +25,15 @@ class MultaController extends Controller
         return view('multa.index', compact('multas'))
             ->with('i', (request()->input('page', 1) - 1) * $multas->perPage());
     }
+
+
+    public function pdf()
+    {
+        $multas = Multa::paginate();
+        $pdf = PDF::loadView('multa.pdf',['multas'=>$multas]);
+        return $pdf->download('_multas.pdf');  
+    }
+    
 
     /**
      * Show the form for creating a new resource.

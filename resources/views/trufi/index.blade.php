@@ -17,8 +17,12 @@
                             </span>
 
                              <div class="float-right">
+                             <a href="{{ route('trufis.pdf') }}" class="btn btn-primary btn-sm"  data-placement="left">
+                                  {{ __('PDF') }}
+                                </a>
+&nbsp; 
                                 <a href="{{ route('trufis.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                  {{ __('Crear Trufi') }}
                                 </a>
                               </div>
                         </div>

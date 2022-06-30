@@ -18,7 +18,7 @@
 
                              <div class="float-right">
                                 <a href="{{ route('usuarios.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Registrar Nuevo Usuario') }}
+                                  {{ __('Registrar Usuario') }}
                                 </a>
                               </div>
                         </div>

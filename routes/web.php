@@ -23,6 +23,11 @@ Route::get('/', function () {
 });
 
 Route::get('choferes/pdf', [App\Http\Controllers\ChofereController::class, 'pdf'])->name('choferes.pdf');
+Route::get('socios/pdf', [App\Http\Controllers\SocioController::class, 'pdf'])->name('socios.pdf');
+Route::get('multas/pdf', [App\Http\Controllers\MultaController::class, 'pdf'])->name('multas.pdf');
+Route::get('vehiculos/pdf', [App\Http\Controllers\VehiculoController::class, 'pdf'])->name('vehiculos.pdf');
+Route::get('trufis/pdf', [App\Http\Controllers\TrufiController::class, 'pdf'])->name('trufis.pdf');
+
 
 Auth::routes();
 
