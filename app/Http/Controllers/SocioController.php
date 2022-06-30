@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Socio;
 use Illuminate\Http\Request;
+use PDF;
 
 
 /**
@@ -23,6 +24,18 @@ class SocioController extends Controller
 
         return view('socio.index', compact('socios'))
             ->with('i', (request()->input('page', 1) - 1) * $socios->perPage());
+    }
+
+    public function pdf()
+    {
+        $socios = Socio::paginate();
+
+        $pdf = PDF::loadView('socio.pdf',['socios'=>$socios]);
+       // $pdf->loadHTML('<h1> test </h1>');
+        //return $pdf->stream();
+        return $pdf->download('_socios.pdf');
+
+    //    return view('socio.pdf', compact('socios'));   
     }
 
 

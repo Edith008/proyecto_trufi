@@ -7,6 +7,7 @@ use App\Models\Chofere;
 use App\Models\Vehiculo;
 use App\Models\Gruporuta;
 use Illuminate\Http\Request;
+use PDF;
 
 /**
  * Class TrufiController
@@ -26,6 +27,14 @@ class TrufiController extends Controller
         return view('trufi.index', compact('trufis'))
             ->with('i', (request()->input('page', 1) - 1) * $trufis->perPage());
     }
+
+    public function pdf()
+    {
+        $trufis = Trufi::paginate();
+        $pdf = PDF::loadView('trufi.pdf',['trufis'=>$trufis]);
+        return $pdf->download('_trufis.pdf');  
+    }
+
 
     /**
      * Show the form for creating a new resource.

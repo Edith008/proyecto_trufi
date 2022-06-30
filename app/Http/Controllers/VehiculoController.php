@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Vehiculo;
 use App\Models\Socio;
 use Illuminate\Http\Request;
+use PDF;
 
 /**
  * Class VehiculoController
@@ -23,6 +24,13 @@ class VehiculoController extends Controller
 
         return view('vehiculo.index', compact('vehiculos'))
             ->with('i', (request()->input('page', 1) - 1) * $vehiculos->perPage());
+    }
+
+    public function pdf()
+    {
+        $vehiculos = Vehiculo::paginate();
+        $pdf = PDF::loadView('vehiculo.pdf',['vehiculos'=>$vehiculos]);
+        return $pdf->download('_vehiculos.pdf');  
     }
 
     /**
