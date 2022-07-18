@@ -6,6 +6,8 @@ use App\Models\Servicio;
 use App\Models\Trufi;
 use Illuminate\Http\Request;
 use Carbon\carbon;
+use PDF;
+use Auth;
 
 /**
  * Class ServicioController
@@ -25,10 +27,24 @@ class ServicioController extends Controller
     {
         $buscarpor= $request->get('buscarpor');
         $servicios = Servicio::where('trufi_id','like','%'.$buscarpor.'%')
-                              ->orWhere('fecha','like','%'.$buscarpor.'%')->paginate();
+                              ->orWhere('fecha','=',$buscarpor)->paginate();
 
-        return view('servicio.index', compact('servicios','buscarpor'))
+        $trufis = Trufi::pluck('id');
+
+        return view('servicio.index', compact('servicios','buscarpor','trufis'))
             ->with('i', (request()->input('page', 1) - 1) * $servicios->perPage());
+    }
+
+    public function pdf(Request $request)
+    {
+        $TiempoActual = Carbon::now();
+        $hora = $TiempoActual->toTimeString();
+        $fecha = $TiempoActual->format('d-m-Y');
+        
+        $servicios = Servicio::paginate();
+        $pdf = PDF::loadView('servicio.pdf',['servicios'=>$servicios], compact('hora','fecha','servicios'));
+        return $pdf->download('_Reporte de Servicios.pdf');
+
     }
 
     /**

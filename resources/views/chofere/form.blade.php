@@ -41,6 +41,11 @@
             {{ Form::text('garantia', $chofere->garantia, ['class' => 'form-control' . ($errors->has('garantia') ? ' is-invalid' : ''), 'placeholder' => 'Garantia']) }}
             {!! $errors->first('garantia', '<div class="invalid-feedback">:message</div>') !!}
         </div>
+        <div class="form-group">
+            {{ Form::label('telefono') }}
+            {{ Form::text('telefono', $chofere->telefono, ['class' => 'form-control' . ($errors->has('telefono') ? ' is-invalid' : ''), 'placeholder' => 'Telefono']) }}
+            {!! $errors->first('telefono', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
 
     </div>
     <div class="box-footer mt20">

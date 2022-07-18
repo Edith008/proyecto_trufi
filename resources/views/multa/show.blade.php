@@ -21,7 +21,7 @@
                     <div class="card-body">
                         
                         <div class="form-group">
-                            <strong>Razon:</strong>
+                            <strong>Razón:</strong>
                             {{ $multa->razon }}
                         </div>
                         <div class="form-group">
@@ -38,7 +38,7 @@
                         </div>
                         <div class="form-group">
                             <strong>Socio:</strong>
-                            {{ $multa->socio }}
+                            {{ $multa->socios->nombre }}
                         </div>
                         <div class="form-group">
                             <strong>Empleado:</strong>

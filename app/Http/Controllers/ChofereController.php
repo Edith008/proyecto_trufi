@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Chofere;
 use Illuminate\Http\Request;
+
+use Carbon\carbon;
 use PDF;
+use Auth;
+use App\Http\Controllers\BitacoraController;
 
 /**
  * Class ChofereController
@@ -28,9 +32,12 @@ class ChofereController extends Controller
 
     public function pdf()
     {
-        $choferes = Chofere::paginate();
+        $TiempoActual = Carbon::now();
+        $hora = $TiempoActual->toTimeString();
+        $fecha = $TiempoActual->format('d-m-Y');
 
-        $pdf = PDF::loadView('chofere.pdf',['choferes'=>$choferes]);
+        $choferes = Chofere::paginate();
+        $pdf = PDF::loadView('chofere.pdf',['choferes'=>$choferes], compact('hora','fecha','choferes'));
        // $pdf->loadHTML('<h1> test </h1>');
         //return $pdf->stream();
         return $pdf->download('_choferes.pdf');
@@ -62,6 +69,11 @@ class ChofereController extends Controller
 
         $chofere = Chofere::create($request->all());
 
+        //CODIGO PARA LA BITACORA
+        $detalle = "Registro de CHOFER: ".$request->nombre;
+        app(BitacoraController::class)->registrar($detalle);
+        //
+
         return redirect()->route('choferes.index')
             ->with('success', 'Nuevo Chofer registrado con exito.');
     }
@@ -88,6 +100,11 @@ class ChofereController extends Controller
     public function edit($id)
     {
         $chofere = Chofere::find($id);
+
+        //CODIGO PARA LA BITACORA
+        $detalle = "Se EDITÓ los datos de CHOFER: ".$chofere->nombre;
+        app(BitacoraController::class)->registrar($detalle);
+        //
 
         return view('chofere.edit', compact('chofere'));
     }
@@ -116,7 +133,14 @@ class ChofereController extends Controller
      */
     public function destroy($id)
     {
-        $chofere = Chofere::find($id)->delete();
+        $chofere = Chofere::find($id);
+
+        //CODIGO PARA LA BITACORA
+        $detalle = "Se ELIMINÓ los datos de CHOFER: ".$chofer->nombre;
+        app(BitacoraController::class)->registrar($detalle);
+        //
+
+        $chofere->delete();
 
         return redirect()->route('choferes.index')
             ->with('success', 'Información del Chofer eliminado con exito.');

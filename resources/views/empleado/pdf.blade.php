@@ -12,7 +12,7 @@
     <center>- Asociacion de Trufi 27 de Marzo -</center>
 </h2>
 <h2>
-    <center>Reporte de Socios</center>
+    <center>Reporte de Empleados</center>
 </h2>
 <h4>Reporte generado en fecha {{$fecha}} , a horas {{$hora}},
      a cargo del usuario {{ Auth::user()->name }}.
@@ -25,31 +25,33 @@
                 <th>N°</th>
                                         
 				<th>Nombre</th>
+				<th>Registrado Por</th>
 				<th>Ci</th>
 				<th>Direccion</th>
 				<th>Fecha Nacimiento</th>
-				<th>Edad</th>
 				<th>Fecha Afiliacion</th>
 				<th>Sexo</th>
-				<th>Telefono</th>
+				<th>Cargo</th>
+				<th>Teléfono</th>
                 
              </tr>
         </thead>
         <tbody>
         {{ $i = 0 }}
 
-            @foreach ($socios as $socio)
+            @foreach ($empleados as $empleado)
                 <tr>
                     <td>{{ ++$i }}</td>    
                 
-					<td>{{ $socio->nombre }}</td>
-					<td>{{ $socio->ci }}</td>
-					<td>{{ $socio->direccion }}</td>
-					<td>{{ $socio->fnacimiento}}</td>
-					<td>{{ \Carbon\Carbon::parse($socio->fnacimiento)->age }}</td>
-					<td>{{ $socio->fafiliacion }}</td>
-					<td>{{ $socio->sexo }}</td>
-					<td>{{ $socio->telefono }}</td>
+					<td>{{ $empleado->user->name }}</td>
+					<td>{{ $empleado->registrado_por }}</td>
+					<td>{{ $empleado->ci }}</td>
+					<td>{{ $empleado->direccion }}</td>
+					<td>{{ $empleado->fnacimiento }}</td>
+					<td>{{ $empleado->fafiliacion }}</td>
+					<td>{{ $empleado->sexo }}</td>
+					<td>{{ $empleado->cargo }}</td>
+					<td>{{ $empleado->telefono }}</td>
                 
                 </tr>
             @endforeach

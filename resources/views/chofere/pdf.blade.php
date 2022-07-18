@@ -5,50 +5,56 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-<!-- 
-    <link href="{{ public_path('css/app.css') }}" rel="stylesheet" type="text/css">
--->  
 </head>
 <body>
 
-    <h2>Lista de choferes </h2>
+<h2>
+    <center>- Asociacion de Trufi 27 de Marzo -</center>
+</h2>
+<h2>
+    <center>Reporte de Choferes</center>
+</h2>
+<h4>Reporte generado en fecha {{$fecha}} , a horas {{$hora}},
+     a cargo del usuario {{ Auth::user()->name }}.
+</h4>
 
     <table class="table table-striped table-hover">
         <thead class="thead">
-            <tr> 
+            <tr>
+                
+                <th>N°</th>
+                                        
 				<th>Nombre</th>
 				<th>Ci</th>
-                <th>Licencia</th>
-                <th>Direccion</th>
-<!--
-                <th>No</th>
 				<th>Direccion</th>
-                <th>Fecha Nacimiento</th>
+				<th>Fecha Nacimiento</th>
 				<th>Fecha Afiliacion</th>
 				<th>Sexo</th>
-			    <th>Garantia</th>
--->                                   
-            </tr>
-       </thead>
-       <tbody>
+				<th>Licencia</th>
+				<th>Telefono</th>
+                
+             </tr>
+        </thead>
+        <tbody>
+        {{ $i = 0 }}
+
             @foreach ($choferes as $chofere)
-               <tr>
-				    <td>{{ $chofere->nombre }}</td>
+                <tr>
+                    <td>{{ ++$i }}</td>    
+                
+					<td>{{ $chofere->nombre }}</td>
 					<td>{{ $chofere->ci }}</td>
-<!--
 					<td>{{ $chofere->direccion }}</td>
-					<td>{{ $chofere->fnacimiento }}</td>
+					<td>{{ $chofere->fnacimiento}}</td>
 					<td>{{ $chofere->fafiliacion }}</td>
 					<td>{{ $chofere->sexo }}</td>
-					<td>{{ $chofere->garantia }}</td>
--->
 					<td>{{ $chofere->licencia }}</td>
-                    <td>{{ $chofere->direccion }}</td>
-                    
+					<td>{{ $chofere->telefono }}</td>
+                
                 </tr>
             @endforeach
         </tbody>
-    </table>
+     </table>
 
 </body>
 </html>

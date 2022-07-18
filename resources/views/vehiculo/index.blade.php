@@ -13,12 +13,13 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Vehiculo') }}
+                                {{ __('
+                                    Lista de Vehiculos') }}
                             </span>
 
                              <div class="float-right">
                              <a href="{{ route('vehiculos.pdf') }}" class="btn btn-primary btn-sm"  data-placement="left">
-                                  {{ __('PDF') }}
+                                  {{ __('Generar reporte en PDF') }}
                                 </a>
 &nbsp; 
 
@@ -39,15 +40,12 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
+                                        <th>Nº</th>
                                         
-										<th>Socio</th>
-										<th>Marca</th>
-										<th>Matricula</th>
-										<th>Modelo</th>
-										<th>Ruat</th>
-										<th>Estado</th>
-										<th>Soat</th>
+										<th>SOCIO</th>
+										<th>MARCA</th>
+										<th>MATRICULA</th>
+										<th>MODELO</th>
 
                                         <th></th>
                                     </tr>
@@ -61,9 +59,6 @@
 											<td>{{ $vehiculo->marca }}</td>
 											<td>{{ $vehiculo->matricula }}</td>
 											<td>{{ $vehiculo->modelo }}</td>
-											<td>{{ $vehiculo->ruat }}</td>
-											<td>{{ $vehiculo->estado }}</td>
-											<td>{{ $vehiculo->soat }}</td>
 
                                             <td>
                                                 <form action="{{ route('vehiculos.destroy',$vehiculo->id) }}" method="POST">

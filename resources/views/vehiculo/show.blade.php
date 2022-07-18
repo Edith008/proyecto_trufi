@@ -11,18 +11,18 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">Show Vehiculo</span>
+                            <span class="card-title">Información detallada del vehículo</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('vehiculos.index') }}"> Back</a>
+                            <a class="btn btn-primary" href="{{ route('vehiculos.index') }}"> Atrás</a>
                         </div>
                     </div>
 
                     <div class="card-body">
                         
                         <div class="form-group">
-                            <strong>Socio Id:</strong>
-                            {{ $vehiculo->socio_id }}
+                            <strong>Socio dueño del Vehículo:</strong>
+                            {{ $vehiculo->socio->nombre }}
                         </div>
                         <div class="form-group">
                             <strong>Marca:</strong>

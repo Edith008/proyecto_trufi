@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Role
+    Bitacora
 @endsection
 
 @section('content')
@@ -11,15 +11,23 @@
                 <div class="card">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
-
+                        
                             <span id="card_title">
-                                {{ __('Role') }}
+                                {{ __('Bitacora') }}
+                                <form class="d-flex">
+                                    <input name="buscarpor" class="form-control me-2" type="search" placeholder="aaaa-mm-dd" aria-label="search">
+                                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                                </form>
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('roles.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Crear Rol') }}
+                                <a href="{{ route('bitacoras.pdf',$buscarpor) }}" class="btn btn-primary btn-sm "  data-placement="left">
+                                  {{ __('Generar un reporte en PDF') }}
                                 </a>
+&nbsp; 
+                                <!-- <a href="{{ route('bitacoras.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                  {{ __('Create New') }}
+                                </a> -->
                               </div>
                         </div>
                     </div>
@@ -36,27 +44,31 @@
                                     <tr>
                                         <th>N°</th>
                                         
-										<th>NOMBRE</th>
-										<th>DESCRIPCIÓN</th>
+										<th>DETALLE</th>
+										<th>HORA</th>
+										<th>FECHA</th>
+										<th>USUARIO</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($roles as $role)
+                                    @foreach (array_reverse(iterator_to_array($bitacoras)) as $bitacora)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $role->nombre }}</td>
-											<td>{{ $role->descripcion }}</td>
+											<td>{{ $bitacora->detalle }}</td>
+											<td>{{ $bitacora->hora }}</td>
+											<td>{{ $bitacora->fecha }}</td>
+											<td>{{ $bitacora->user->name }}</td>
 
                                             <td>
-                                                <form action="{{ route('roles.destroy',$role->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('roles.show',$role->id) }}"><i class="fa fa-fw fa-eye"></i> Ver</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('roles.edit',$role->id) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
+                                                <form action="{{ route('bitacoras.destroy',$bitacora->id) }}" method="POST">
+                                                    <!-- <a class="btn btn-sm btn-primary " href="{{ route('bitacoras.show',$bitacora->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('bitacoras.edit',$bitacora->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a> -->
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Eliminar</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -66,9 +78,8 @@
                         </div>
                     </div>
                 </div>
-                {!! $roles->links() !!}
+                {!! $bitacoras->links() !!}
             </div>
         </div>
     </div>
 @endsection
-

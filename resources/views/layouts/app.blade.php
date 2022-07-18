@@ -67,7 +67,7 @@
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
-                                <a class="nav-link" href="{{ route('multas.index') }}">{{ __('Gestionar Bitacoras') }}</a>
+                                <a class="nav-link" href="{{ route('bitacoras.index') }}">{{ __('Gestionar Bitacoras') }}</a>
                                 <a class="nav-link" href="{{ route('multas.index') }}">{{ __('Gestionar Multas') }}</a>
                             
                             </div>

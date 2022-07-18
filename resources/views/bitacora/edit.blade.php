@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Update Trufi
+    Update Bitacora
 @endsection
 
 @section('content')
@@ -13,14 +13,14 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Actualización de los datos del trufi</span>
+                        <span class="card-title">Update Bitacora</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('trufis.update', $trufi->id) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('bitacoras.update', $bitacora->id) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
 
-                            @include('trufi.form')
+                            @include('bitacora.form')
 
                         </form>
                     </div>

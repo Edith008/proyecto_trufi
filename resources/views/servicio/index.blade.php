@@ -13,14 +13,19 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Servicio') }}
+                                {{ __('Filtar Infomación') }}
+
                                 <form class="d-flex">
-                                    <input name="buscarpor" class="form-control me-2" type="search" placeholder="Buscar" aria-label="search" value="{{ $buscarpor }}">
+                                    <input name="buscarpor" class="form-control me-2" type="search" placeholder="fecha o interno" aria-label="search">
                                     <button class="btn btn-outline-success" type="submit">Buscar</button>
                                 </form>
+
                             </span>
 
                              <div class="float-right">
+                             <a href="{{ route('servicios.pdf') }}" class="btn btn-primary btn-sm "  data-placement="left">
+                                  {{ __('Generar un reporte en PDF') }}
+                                </a>
                                 <a href="{{ route('servicios.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('NUEVA SALIDA') }}
                                 </a>
@@ -38,12 +43,13 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>Nº Registro</th>
+                                        <th>Nº</th>
                                         
 										<th>INTERNO</th>
 										<th>CHOFER</th>
 										<th>SALIDA</th>
 										<th>LLEGADA</th>
+										<th>DURACIÓN(min)</th>
 										<th>FECHA</th>
 										<th>OBSERVACIONES</th>
 
@@ -51,14 +57,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($servicios as $servicio)
+                                    @foreach (array_reverse(iterator_to_array($servicios)) as $servicio)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $servicio->trufi->id}}</td>
+											<td>Interno {{ $servicio->trufi->id}}</td>
 											<td>{{ $servicio->trufi->chofere->nombre}}</td>
 											<td>{{ $servicio->hsalida }}</td>
 											<td>{{ $servicio->hllegada }}</td>
+											<td>{{ \Carbon\Carbon::parse($servicio->hsalida)->DiffInMinutes($servicio->hllegada) }} min.</td>
 											<td>{{ $servicio->fecha }}</td>
 											<td>{{ $servicio->observacion }}</td>
 

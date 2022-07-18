@@ -8,11 +8,20 @@
 </head>
 <body>
     
-<h2>Lista de multas </h2>
+<h2>
+    <center>- Asociacion de Trufi 27 de Marzo -</center>
+</h2>
+<h2>
+    <center>Reporte de Multas</center>
+</h2>
+<h4>Reporte generado en fecha {{$fecha}} , a horas {{$hora}},
+     a cargo del usuario {{ Auth::user()->name }}.
+</h4>
 
     <table class="table table-striped table-hover">
         <thead class="thead">
             <tr>
+                <th>N°</th>
                 <th>Razon</th>
                 <th>Fecha</th>
                 <th>Monto</th>
@@ -23,8 +32,11 @@
             </tr>
         </thead>
             <tbody>
+            {{ $i = 0 }}
                 @foreach ($multas as $multa)
                     <tr>
+
+                    <td>{{ ++$i }}</td>  
                                                 
                     <td>{{ $multa->razon }}</td>
                     <td>{{ $multa->fecha }}</td>

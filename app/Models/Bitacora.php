@@ -5,28 +5,28 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Servicio
+ * Class Bitacora
  *
  * @property $id
- * @property $trufi_id
- * @property $hsalida
- * @property $hllegada
+ * @property $detalle
+ * @property $hora
  * @property $fecha
- * @property $observacion
+ * @property $user_id
  * @property $created_at
  * @property $updated_at
  *
- * @property Trufi $trufi
+ * @property User $user
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class Servicio extends Model
+class Bitacora extends Model
 {
     
     static $rules = [
-		'trufi_id' => 'required',
-		'hsalida' => 'required',
+		'detalle' => 'required',
+		'hora' => 'required',
 		'fecha' => 'required',
+		'user_id' => 'required',
     ];
 
     protected $perPage = 60;
@@ -36,16 +36,15 @@ class Servicio extends Model
      *
      * @var array
      */
-    protected $fillable = ['trufi_id','hsalida','hllegada','fecha','observacion'];
+    protected $fillable = ['detalle','hora','fecha','user_id'];
 
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function trufi()
+    public function user()
     {
-        return $this->hasOne('App\Models\Trufi', 'id', 'trufi_id');
+        return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
-    
 
 }

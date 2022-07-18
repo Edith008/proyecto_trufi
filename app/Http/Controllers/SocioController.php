@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Socio;
 use Illuminate\Http\Request;
+use Carbon\carbon;
 use PDF;
-
+use Auth;
+use App\Http\Controllers\BitacoraController;
 
 /**
  * Class SocioController
@@ -21,16 +23,24 @@ class SocioController extends Controller
     public function index(Request $request)
     {
         $buscarpor= $request->get('buscarpor');
+
         $socios = Socio::where('nombre','like','%'.$buscarpor.'%')
                          ->orWhere('ci','like','%'.$buscarpor.'%')->paginate();
         return view('socio.index', compact('socios','buscarpor'))
             ->with('i', (request()->input('page', 1) - 1) * $socios->perPage());
     }
 
-    public function pdf()
+    public function pdf(Request $request)
     {
-        $socios = Socio::paginate();
-        $pdf = PDF::loadView('socio.pdf',['socios'=>$socios]);
+        $TiempoActual = Carbon::now();
+        $hora = $TiempoActual->toTimeString();
+        $fecha = $TiempoActual->format('d-m-Y');
+        
+        $buscarpor= $request->get('buscarpor');
+        $socios = Socio::where('nombre','like','%'.$buscarpor.'%')
+                         ->orWhere('ci','like','%'.$buscarpor.'%')->paginate();
+        
+        $pdf = PDF::loadView('socio.pdf',['socios'=>$socios], compact('hora','fecha','socios'));
         return $pdf->download('_socios.pdf');
 
     }
@@ -59,6 +69,10 @@ class SocioController extends Controller
 
         $socio = Socio::create($request->all());
 
+        //CODIGO PARA LA BITACORA
+        $detalle = "Registro de SOCIO: ".$request->nombre;
+        app(BitacoraController::class)->registrar($detalle);
+        //
         return redirect()->route('socios.index')
             ->with('success', 'Socio created successfully.');
     }
@@ -85,6 +99,11 @@ class SocioController extends Controller
     public function edit($id)
     {
         $socio = Socio::find($id);
+
+        //CODIGO PARA LA BITACORA
+        $detalle = "Se EDITO los datos de SOCIO: ".$socio->nombre;
+        app(BitacoraController::class)->registrar($detalle);
+        //
 
         return view('socio.edit', compact('socio'));
     }
@@ -113,7 +132,14 @@ class SocioController extends Controller
      */
     public function destroy($id)
     {
-        $socio = Socio::find($id)->delete();
+        $socio = Socio::find($id);
+
+        //CODIGO PARA LA BITACORA
+        $detalle = "Se ELIMINO los datos de SOCIO: ".$socio->nombre;
+        app(BitacoraController::class)->registrar($detalle);
+        //
+
+        $socio->delete();
 
         return redirect()->route('socios.index')
             ->with('success', 'Socio deleted successfully');

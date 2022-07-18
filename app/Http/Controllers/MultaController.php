@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Multa;
 use App\Models\Socio;
 use Illuminate\Http\Request;
+
+use Carbon\carbon;
 use PDF;
+use Auth;
+use App\Http\Controllers\BitacoraController;
 
 /**
  * Class MultaController
@@ -29,8 +33,12 @@ class MultaController extends Controller
 
     public function pdf()
     {
+        $TiempoActual = Carbon::now();
+        $hora = $TiempoActual->toTimeString();
+        $fecha = $TiempoActual->format('d-m-Y');
+
         $multas = Multa::paginate();
-        $pdf = PDF::loadView('multa.pdf',['multas'=>$multas]);
+        $pdf = PDF::loadView('multa.pdf',['multas'=>$multas], compact('hora','fecha','multas'));
         return $pdf->download('_multas.pdf');  
     }
     
@@ -61,6 +69,11 @@ class MultaController extends Controller
 
         $multa = Multa::create($request->all());
 
+        //CODIGO PARA LA BITACORA
+        $detalle = "Registro de MULTA para: ".$multa->socios->nombre;
+        app(BitacoraController::class)->registrar($detalle);
+        //
+
         return redirect()->route('multas.index')
             ->with('success', 'Nueva Multa registrada correctamente.');
     }
@@ -88,6 +101,11 @@ class MultaController extends Controller
     {
         $multa = Multa::find($id);
         $socios = Socio::pluck('nombre','id');
+
+        //CODIGO PARA LA BITACORA
+        $detalle = "Se EDITÓ los datos de la MULTA de: ".$multa->socios->nombre;
+        app(BitacoraController::class)->registrar($detalle);
+        //
         
         return view('multa.edit', compact('multa','socios'));
     }
@@ -116,7 +134,14 @@ class MultaController extends Controller
      */
     public function destroy($id)
     {
-        $multa = Multa::find($id)->delete();
+        $multa = Multa::find($id);
+
+        //CODIGO PARA LA BITACORA
+        $detalle = "Se ELIMINÓ los datos de la MULTA de: ".$multa->socios->nombre;
+        app(BitacoraController::class)->registrar($detalle);
+        //
+
+        $multa->delete();
 
         return redirect()->route('multas.index')
             ->with('success', 'Multa eliminada.');

@@ -11,7 +11,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">Informacion completa del Trufi</span>
+                            <span class="card-title">Información completa del Trufi</span>
                         </div>
                         <div class="float-right">
                             <a class="btn btn-primary" href="{{ route('trufis.index') }}"> Volver</a>
@@ -20,6 +20,10 @@
 
                     <div class="card-body">
                         
+                        <div class="form-group">
+                            <strong>Interno:</strong>
+                            {{ $trufi->id }}
+                        </div>
                         <div class="form-group">
                             <strong>Chofer:</strong>
                             {{ $trufi->chofere->nombre }}

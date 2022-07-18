@@ -13,10 +13,13 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Empleado') }}
+                                {{ __('Lista de Empleados') }}
                             </span>
 
                              <div class="float-right">
+                             <a href="{{ route('empleados.pdf') }}" class="btn btn-primary btn-sm "  data-placement="left">
+                                  {{ __('Generar un reporte en PDF') }}
+                                </a>
                                 <a href="{{ route('empleados.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Registrar Empleado') }}
                                 </a>
@@ -34,16 +37,13 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
+                                        <th>N°</th>
                                         
-										<th>User Id</th>
-										<th>Registrado Por</th>
-										<th>Ci</th>
-										<th>Direccion</th>
-										<th>Fnacimiento</th>
-										<th>Fafiliacion</th>
-										<th>Sexo</th>
-										<th>Cargo</th>
+										<th>NOMBRE</th>
+										<th>CI</th>
+										<th>DIRECCION</th>
+										<th>FECHA AFILIACION</th>
+										<th>CARGO</th>
 
                                         <th></th>
                                     </tr>
@@ -54,12 +54,9 @@
                                             <td>{{ ++$i }}</td>
                                             
 											<td>{{ $empleado->user->name }}</td>
-											<td>{{ $empleado->registrado_por }}</td>
 											<td>{{ $empleado->ci }}</td>
 											<td>{{ $empleado->direccion }}</td>
-											<td>{{ $empleado->fnacimiento }}</td>
 											<td>{{ $empleado->fafiliacion }}</td>
-											<td>{{ $empleado->sexo }}</td>
 											<td>{{ $empleado->cargo }}</td>
 
                                             <td>

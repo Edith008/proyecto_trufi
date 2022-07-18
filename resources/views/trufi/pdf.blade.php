@@ -8,22 +8,35 @@
 </head>
 <body>
  
-<h2>Lista de Trufis </h2>
+<h2>
+    <center>- Asociacion de Trufi 27 de Marzo -</center>
+</h2>
+<h2>
+    <center>Reporte de Trufis</center>
+</h2>
+<h4>Reporte generado en fecha {{$fecha}} , a horas {{$hora}},
+     a cargo del usuario {{ Auth::user()->name }}.
+</h4>
 
     <table class="table table-striped table-hover">
         <thead class="thead">
             <tr>
+                <th>N°</th>
 
-				<th>Chofer Id</th>
-				<th>Vehiculo Id</th>
-				<th>Gruporuta Id</th>
+				<th>Interno</th>
+				<th>Chofer</th>
+				<th>Vehiculo</th>
+				<th>Gruporuta</th>
 
             </tr>
         </thead>
         <tbody>
+        {{ $i = 0 }}
             @foreach ($trufis as $trufi)
                 <tr>
+                <td>{{ ++$i }}</td> 
 
+					<td>Interno {{ $trufi->id }}</td>
 					<td>{{ $trufi->chofere->nombre }}</td>
 					<td>{{ $trufi->vehiculo->matricula }}</td>
 					<td>{{ $trufi->gruporuta->nombre }}</td>
