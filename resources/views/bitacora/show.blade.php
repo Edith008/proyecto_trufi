@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ $usuario->name ?? 'Show Usuario' }}
+    {{ $bitacora->name ?? 'Show Bitacora' }}
 @endsection
 
 @section('content')
@@ -11,26 +11,30 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">Usuarios</span>
+                            <span class="card-title">Show Bitacora</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('usuarios.index') }}"> Atrás</a>
+                            <a class="btn btn-primary" href="{{ route('bitacoras.index') }}"> Back</a>
                         </div>
                     </div>
 
                     <div class="card-body">
                         
                         <div class="form-group">
-                            <strong>Nombre:</strong>
-                            {{ $usuario->name }}
+                            <strong>Detalle:</strong>
+                            {{ $bitacora->detalle }}
                         </div>
                         <div class="form-group">
-                            <strong>Email:</strong>
-                            {{ $usuario->email }}
+                            <strong>Hora:</strong>
+                            {{ $bitacora->hora }}
                         </div>
                         <div class="form-group">
-                            <strong>Rol:</strong>
-                            {{ $usuario->roles->nombre }}
+                            <strong>Fecha:</strong>
+                            {{ $bitacora->fecha }}
+                        </div>
+                        <div class="form-group">
+                            <strong>User Id:</strong>
+                            {{ $bitacora->user_id }}
                         </div>
 
                     </div>

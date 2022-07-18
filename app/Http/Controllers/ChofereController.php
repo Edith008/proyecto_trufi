@@ -37,6 +37,7 @@ class ChofereController extends Controller
         $pdf = PDF::loadView('chofere.pdf',['choferes'=>$choferes]);
         //$pdf->loadHTML('<h1> test </h1>');
         //return $pdf->stream();
+        
         return $pdf->download('_choferes.pdf');
 
         //return view('chofere.pdf', compact('choferes'));   

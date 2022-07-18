@@ -30,16 +30,18 @@ class Socio extends Model
 		'fnacimiento' => 'required',
 		'fafiliacion' => 'required',
 		'sexo' => 'required',
+		'telefono' => 'required',
     ];
 
     protected $perPage = 20;
+    // public $informacionVisualizada;
 
     /**
      * Attributes that should be mass-assignable.
      *
      * @var array
      */
-    protected $fillable = ['nombre','ci','direccion','fnacimiento','fafiliacion','sexo'];
+    protected $fillable = ['nombre','ci','direccion','fnacimiento','fafiliacion','sexo','telefono'];
 
 
 

@@ -7,12 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-    
+
 <h2>
     <center>- Asociacion de Trufi 27 de Marzo -</center>
 </h2>
 <h2>
-    <center>Reporte de Vehiculos</center>
+    <center>Reporte de Usuarios</center>
 </h2>
 <h4>Reporte generado en fecha {{$fecha}} , a horas {{$hora}},
      a cargo del usuario {{ Auth::user()->name }}.
@@ -21,32 +21,30 @@
     <table class="table table-striped table-hover">
         <thead class="thead">
             <tr>
-
-				<th>Socio </th>                                      
-				<th>Marca</th>
-				<th>Matricula</th>
-				<th>Modelo</th>
-				<th>Ruat</th>
-				<th>Estado</th>
-				<th>Soat</th>
-
-            </tr>
+                
+                <th>N°</th>
+                                        
+				<th>Nombre</th>
+				<th>Email</th>
+				<th>Rol</th>
+                
+             </tr>
         </thead>
         <tbody>
-             @foreach ($vehiculos as $vehiculo)
-                 <tr>
-					<td>{{ $vehiculo->socio->nombre }}</td>
-					<td>{{ $vehiculo->marca }}</td>
-					<td>{{ $vehiculo->matricula }}</td>
-					<td>{{ $vehiculo->modelo }}</td>
-					<td>{{ $vehiculo->ruat }}</td>
-					<td>{{ $vehiculo->estado }}</td>
-					<td>{{ $vehiculo->soat }}</td>
+        {{ $i = 0 }}
 
+            @foreach ($usuarios as $usuario)
+                <tr>
+                    <td>{{ ++$i }}</td>    
+                
+					<td>{{ $usuario->name }}</td>
+					<td>{{ $usuario->email }}</td>
+					<td>{{ $usuario->roles->nombre }}</td>
+                
                 </tr>
             @endforeach
         </tbody>
-    </table>
+     </table>
 
 </body>
 </html>

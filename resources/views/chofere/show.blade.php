@@ -11,7 +11,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">Choferes</span>
+                            <span class="card-title">Información detallada del Chofer</span>
                         </div>
                         <div class="float-right">
                             <a class="btn btn-primary" href="{{ route('choferes.index') }}"> Atrás</a>
@@ -25,7 +25,7 @@
                             {{ $chofere->nombre }}
                         </div>
                         <div class="form-group">
-                            <strong>Ci:</strong>
+                            <strong>CI:</strong>
                             {{ $chofere->ci }}
                         </div>
                         <div class="form-group">
@@ -33,11 +33,11 @@
                             {{ $chofere->direccion }}
                         </div>
                         <div class="form-group">
-                            <strong>Fecha Nacimiento:</strong>
+                            <strong>Fecha de Nacimiento:</strong>
                             {{ $chofere->fnacimiento }}
                         </div>
                         <div class="form-group">
-                            <strong>Fafiliacion:</strong>
+                            <strong>Fecha de afiliacion:</strong>
                             {{ $chofere->fafiliacion }}
                         </div>
                         <div class="form-group">
@@ -51,6 +51,10 @@
                         <div class="form-group">
                             <strong>Garantia:</strong>
                             {{ $chofere->garantia }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Telefono:</strong>
+                            {{ $chofere->telefono }}
                         </div>
 
                     </div>

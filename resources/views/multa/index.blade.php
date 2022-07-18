@@ -13,12 +13,12 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Multa') }}
+                                {{ __('Multas') }}
                             </span>
 
                              <div class="float-right">
                              <a href="{{ route('multas.pdf') }}" class="btn btn-primary btn-sm"  data-placement="left">
-                                  {{ __('PDF') }}
+                                  {{ __('Generar un reporte en PDF') }}
                                 </a>
 &nbsp; 
                                 <a href="{{ route('multas.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
@@ -40,12 +40,12 @@
                                     <tr>
                                         <th>No</th>
                                         
-										<th>Razon</th>
-										<th>Fecha</th>
-										<th>Monto</th>
-										<th>Estado</th>
-										<th>Socio</th>
-										<th>Registrado por</th>
+										<th>RAZÓN</th>
+										<th>FECHA</th>
+										<th>MONTO</th>
+										<th>ESTADO</th>
+										<th>SOCIO</th>
+										<th>REGISTRADO POR</th>
 
                                         <th></th>
                                     </tr>

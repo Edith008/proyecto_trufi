@@ -13,16 +13,16 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Trufi') }}
+                                {{ __('Lista de Trufis') }}
                             </span>
 
                              <div class="float-right">
                              <a href="{{ route('trufis.pdf') }}" class="btn btn-primary btn-sm"  data-placement="left">
-                                  {{ __('Generar PDF') }}
+                                  {{ __('Generar reporte en PDF') }}
                                 </a>
 &nbsp; 
                                 <a href="{{ route('trufis.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('NUEVO TRUFI') }}
+                                  {{ __('Registrar nuevo Trufi') }}
                                 </a>
                               </div>
                         </div>
@@ -40,8 +40,9 @@
                                     <tr>
                                         <th>Nº</th>
                                         
+										<th>INTERNO</th>
 										<th>CHOFER</th>
-										<th>VEHICULO</th>
+										<th>VEHÍCULO</th>
 										<th>GRUPO</th>
 
                                         <th></th>
@@ -52,6 +53,7 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
+											<td>Interno {{ $trufi->id }}</td>
 											<td>{{ $trufi->chofere->nombre }}</td>
 											<td>{{ $trufi->vehiculo->matricula }}</td>
 											<td>{{ $trufi->gruporuta->nombre }}</td>

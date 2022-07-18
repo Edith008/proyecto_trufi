@@ -15,14 +15,14 @@
                             <span id="card_title">
                                 {{ __('Socio') }}
                                 <form class="d-flex">
-                                    <input name="buscarpor" class="form-control me-2" type="search" placeholder="Buscar" aria-label="search" value="{{ $buscarpor }}">
+                                    <input name="buscarpor" class="form-control me-2" type="search" placeholder="Buscar por CI o Nombre" aria-label="search">
                                     <button class="btn btn-outline-success" type="submit">Buscar</button>
                                 </form>
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('socios.pdf') }}" class="btn btn-primary btn-sm "  data-placement="left">
-                                  {{ __('PDF') }}
+                                <a href="{{ route('socios.pdf',$buscarpor) }}" class="btn btn-primary btn-sm "  data-placement="left">
+                                  {{ __('Generar un reporte en PDF') }}
                                 </a>
 &nbsp; 
 
@@ -43,14 +43,15 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
+                                        <th>N°</th>
                                         
-										<th>Nombre</th>
-										<th>Ci</th>
-										<th>Direccion</th>
-										<th>Fnacimiento</th>
-										<th>Fafiliacion</th>
-										<th>Sexo</th>
+										<th>NOMBRE</th>
+										<th>CI</th>
+										<th>DIRECCION</th>
+										<th>EDAD</th>
+										<th>FECHA AFILIACION</th>
+										<th>TELEFONO</th>
+										
 
                                         <th></th>
                                     </tr>
@@ -63,9 +64,9 @@
 											<td>{{ $socio->nombre }}</td>
 											<td>{{ $socio->ci }}</td>
 											<td>{{ $socio->direccion }}</td>
-											<td>{{ $socio->fnacimiento }}</td>
+											<td>{{ \Carbon\Carbon::parse($socio->fnacimiento)->age }}</td>
 											<td>{{ $socio->fafiliacion }}</td>
-											<td>{{ $socio->sexo }}</td>
+											<td>{{ $socio->telefono }}</td>
 
                                             <td>
                                                 <form action="{{ route('socios.destroy',$socio->id) }}" method="POST">

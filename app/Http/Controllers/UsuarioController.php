@@ -7,6 +7,11 @@ use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+use Carbon\carbon;
+use PDF;
+use Auth;
+use App\Http\Controllers\BitacoraController;
+
 class UsuarioController extends Controller
 {
     /**
@@ -20,6 +25,19 @@ class UsuarioController extends Controller
 
         return view('usuario.index', compact('usuarios'))
             ->with('i', (request()->input('page', 1) - 1) * $usuarios->perPage());
+    }
+
+    public function pdf()
+    {
+        $TiempoActual = Carbon::now();
+        $hora = $TiempoActual->toTimeString();
+        $fecha = $TiempoActual->format('d-m-Y');
+        
+        // $buscarpor= $request->get('buscarpor');
+        $usuarios = User::paginate();
+        $pdf = PDF::loadView('usuario.pdf', compact('hora','fecha','usuarios'));
+        return $pdf->download('_usuarios.pdf');
+
     }
 
     /**
@@ -54,6 +72,10 @@ class UsuarioController extends Controller
             'password' => Hash::make($request['password']),
             'role_id' => $request['role_id'],
         ]);
+        //CODIGO PARA LA BITACORA
+        $detalle = "Registro de USUARIO: ".$request->name;
+        app(BitacoraController::class)->registrar($detalle);
+        //
 
         return redirect()->route('usuarios.index')
             ->with('success', 'Nuevo Usuario registrado con exito.');
@@ -84,6 +106,11 @@ class UsuarioController extends Controller
 
         $roles = Role::pluck('nombre','id');
 
+        //CODIGO PARA LA BITACORA
+        $detalle = "Se EDITÓ los datos de USUARIO: ".$usuario->name;
+        app(BitacoraController::class)->registrar($detalle);
+        //
+
         return view('usuario.edit', compact('usuario', 'roles'));
     }
 
@@ -112,7 +139,14 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
-        $usuario = User::find($id)->delete();
+        $usuario = User::find($id);
+
+        //CODIGO PARA LA BITACORA
+        $detalle = "Se ELIMINO los datos de USUARIO: ".$usuario->name;
+        app(BitacoraController::class)->registrar($detalle);
+        //
+
+        $usuario->delete();
 
         return redirect()->route('usuarios.index')
             ->with('success', 'Información del Usuarios eliminado con exito.');

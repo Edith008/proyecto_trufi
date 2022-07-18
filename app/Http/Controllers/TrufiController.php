@@ -7,7 +7,11 @@ use App\Models\Chofere;
 use App\Models\Vehiculo;
 use App\Models\Gruporuta;
 use Illuminate\Http\Request;
+
+use Carbon\carbon;
 use PDF;
+use Auth;
+use App\Http\Controllers\BitacoraController;
 
 /**
  * Class TrufiController
@@ -30,8 +34,12 @@ class TrufiController extends Controller
 
     public function pdf()
     {
+        $TiempoActual = Carbon::now();
+        $hora = $TiempoActual->toTimeString();
+        $fecha = $TiempoActual->format('d-m-Y');
+
         $trufis = Trufi::paginate();
-        $pdf = PDF::loadView('trufi.pdf',['trufis'=>$trufis]);
+        $pdf = PDF::loadView('trufi.pdf',['trufis'=>$trufis], compact('hora','fecha','trufis'));
         return $pdf->download('_trufis.pdf');  
     }
 
@@ -63,6 +71,11 @@ class TrufiController extends Controller
 
         $trufi = Trufi::create($request->all());
 
+        //CODIGO PARA LA BITACORA
+        $detalle = "Registro de TRUFI del INTERNO ".$trufi->id;
+        app(BitacoraController::class)->registrar($detalle);
+        //
+
         return redirect()->route('trufis.index')
             ->with('success', 'Trufi created successfully.');
     }
@@ -93,6 +106,11 @@ class TrufiController extends Controller
         $vehiculos = Vehiculo::pluck('matricula','id');
         $gruporutas = Gruporuta::pluck('nombre','id');
 
+        //CODIGO PARA LA BITACORA
+        $detalle = "Se EDITÓ los datos del TRUFI del INTERNO ".$trufi->id;
+        app(BitacoraController::class)->registrar($detalle);
+        //
+
         return view('trufi.edit', compact('trufi','choferes','vehiculos','gruporutas'));
     }
 
@@ -120,7 +138,14 @@ class TrufiController extends Controller
      */
     public function destroy($id)
     {
-        $trufi = Trufi::find($id)->delete();
+        $trufi = Trufi::find($id);
+
+        //CODIGO PARA LA BITACORA
+        $detalle = "Se ELIMINÓ los datos del TRUFI del INTERNO ".$trufi->id;
+        app(BitacoraController::class)->registrar($detalle);
+        //
+
+        $trufi->delete();
 
         return redirect()->route('trufis.index')
             ->with('success', 'Trufi deleted successfully');

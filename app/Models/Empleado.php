@@ -35,6 +35,7 @@ class Empleado extends Model
 		'fafiliacion' => 'required',
 		'sexo' => 'required',
 		'cargo' => 'required',
+		'telefono' => 'required',
     ];
 
     protected $perPage = 20;
@@ -44,7 +45,7 @@ class Empleado extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id','registrado_por','ci','direccion','fnacimiento','fafiliacion','sexo','cargo'];
+    protected $fillable = ['user_id','registrado_por','ci','direccion','fnacimiento','fafiliacion','sexo','cargo','telefono'];
 
 
     /**

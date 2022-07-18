@@ -13,10 +13,13 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Usuarios') }}
+                                {{ __('Lista de Usuarios') }}
                             </span>
-
                              <div class="float-right">
+                                <a href="{{ route('usuarios.pdf') }}" class="btn btn-primary btn-sm "  data-placement="left">
+                                  {{ __('Generar un reporte en PDF') }}
+                                </a>
+&nbsp; 
                                 <a href="{{ route('usuarios.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Registrar Usuario') }}
                                 </a>
@@ -34,11 +37,11 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
+                                        <th>N°</th>
                                         
-										<th>Nombre</th>
-										<th>Email</th>
-										<th>Rol</th>
+										<th>NOMBRE</th>
+										<th>EMAIL</th>
+										<th>ROL</th>
 
                                         <th></th>
                                     </tr>

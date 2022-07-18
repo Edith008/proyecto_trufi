@@ -6,6 +6,11 @@ use App\Models\Empleado;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+use Carbon\carbon;
+use PDF;
+use Auth;
+use App\Http\Controllers\BitacoraController;
+
 /**
  * Class EmpleadoController
  * @package App\Http\Controllers
@@ -23,6 +28,18 @@ class EmpleadoController extends Controller
 
         return view('empleado.index', compact('empleados'))
             ->with('i', (request()->input('page', 1) - 1) * $empleados->perPage());
+    }
+
+    public function pdf(Request $request)
+    {
+        $TiempoActual = Carbon::now();
+        $hora = $TiempoActual->toTimeString();
+        $fecha = $TiempoActual->format('d-m-Y');
+        
+        $empleados = Empleado::paginate();
+        $pdf = PDF::loadView('empleado.pdf',['empleados'=>$empleados], compact('hora','fecha','empleados'));
+        return $pdf->download('_empleados.pdf');
+
     }
 
     /**
@@ -49,6 +66,11 @@ class EmpleadoController extends Controller
         request()->validate(Empleado::$rules);
 
         $empleado = Empleado::create($request->all());
+
+        //CODIGO PARA LA BITACORA
+        $detalle = "Registro de EMPLEADO: ".$empleado->user->name;
+        app(BitacoraController::class)->registrar($detalle);
+        //
 
         return redirect()->route('empleados.index')
             ->with('success', 'Empleado created successfully.');
@@ -79,6 +101,11 @@ class EmpleadoController extends Controller
 
         $users = User::pluck('name','id');
 
+        //CODIGO PARA LA BITACORA
+        $detalle = "Se EDITO los datos de EMPLEADO: ".$empleado->user->name;
+        app(BitacoraController::class)->registrar($detalle);
+        //
+
         return view('empleado.edit', compact('empleado','users'));
     }
 
@@ -106,7 +133,14 @@ class EmpleadoController extends Controller
      */
     public function destroy($id)
     {
-        $empleado = Empleado::find($id)->delete();
+        $empleado = Empleado::find($id);
+
+        //CODIGO PARA LA BITACORA
+        $detalle = "Se ELIMINO los datos de EMPLEADO: ".$empleado->user->name;
+        app(BitacoraController::class)->registrar($detalle);
+        //
+
+        $empleado->delete();
 
         return redirect()->route('empleados.index')
             ->with('success', 'Empleado deleted successfully');

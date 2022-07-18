@@ -41,6 +41,10 @@
                             {{ $servicio->trufi->vehiculo->matricula}}
                         </div>
                         <div class="form-group">
+                            <strong>Dueño del Vehiculo:</strong>
+                            {{ $servicio->trufi->vehiculo->socio->nombre}}
+                        </div>
+                        <div class="form-group">
                             <strong>Grupo:</strong>
                             {{ $servicio->trufi->gruporuta->nombre}}
                         </div>

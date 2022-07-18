@@ -32,16 +32,17 @@ class Chofere extends Model
 		'sexo' => 'required',
 		'licencia' => 'required',
 		'garantia' => 'required',
+		'telefono' => 'required',
     ];
 
-    protected $perPage = 20;
+    protected $perPage = 50;
 
     /**
      * Attributes that should be mass-assignable.
      *
      * @var array
      */
-    protected $fillable = ['nombre','ci','direccion','fnacimiento','fafiliacion','sexo','licencia','garantia'];
+    protected $fillable = ['nombre','ci','direccion','fnacimiento','fafiliacion','sexo','licencia','garantia','telefono'];
 
 
 

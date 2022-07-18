@@ -11,38 +11,46 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">Show Socio</span>
+                            <span class="card-title">Datos del Socio</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('socios.index') }}"> Back</a>
+                            <a class="btn btn-primary" href="{{ route('socios.index') }}"> Atras</a>
                         </div>
                     </div>
 
                     <div class="card-body">
                         
                         <div class="form-group">
-                            <strong>Nombre:</strong>
+                            <strong>NOMBRE:</strong>
                             {{ $socio->nombre }}
                         </div>
                         <div class="form-group">
-                            <strong>Ci:</strong>
+                            <strong>CI:</strong>
                             {{ $socio->ci }}
                         </div>
                         <div class="form-group">
-                            <strong>Direccion:</strong>
+                            <strong>DIRECCION:</strong>
                             {{ $socio->direccion }}
                         </div>
                         <div class="form-group">
-                            <strong>Fnacimiento:</strong>
+                            <strong>FECHA NACIMIENTO:</strong>
                             {{ $socio->fnacimiento }}
                         </div>
                         <div class="form-group">
-                            <strong>Fafiliacion:</strong>
+                            <strong>EDAD:</strong>
+                            {{ \Carbon\Carbon::parse($socio->fnacimiento)->age }} años
+                        </div>
+                        <div class="form-group">
+                            <strong>FECHA AFILIACION:</strong>
                             {{ $socio->fafiliacion }}
                         </div>
                         <div class="form-group">
-                            <strong>Sexo:</strong>
+                            <strong>SEXO:</strong>
                             {{ $socio->sexo }}
+                        </div>
+                        <div class="form-group">
+                            <strong>TELEFONO:</strong>
+                            {{ $socio->telefono }}
                         </div>
 
                     </div>

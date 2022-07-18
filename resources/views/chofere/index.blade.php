@@ -16,17 +16,15 @@
                                 {{ __('  Choferes') }}
 
                                 <form class="d-flex">
-                                    <input name="buscarpor" class="form-control me-2" type="search" placeholder="Buscar" aria-label="search" value="{{ $buscarpor }}">
+                                    <input name="buscarpor" class="form-control me-2" type="search" placeholder="Buscar por CI o Nombre" aria-label="search" value="{{ $buscarpor }}">
                                     <button class="btn btn-outline-success" type="submit">Buscar</button>
                                 </form>
                             </span>
-                            
-
 
                              <div class="float-right">
 
                                 <a href="{{ route('choferes.pdf') }}" class="btn btn-primary btn-sm "  data-placement="left">
-                                  {{ __('PDF') }}
+                                  {{ __('Generar reporte en PDF') }}
                                 </a>
 &nbsp; 
                                 <a href="{{ route('choferes.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
@@ -47,18 +45,12 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
+                                        <th>N°</th>
                                         
-										<th>Nombre</th>
-										<th>Ci</th>
-<!--
-										<th>Direccion</th>
-                                        <th>Fecha Nacimiento</th>
-										<th>Fecha Afiliacion</th>
-										<th>Sexo</th>
-										<th>Garantia</th>
--->
-										<th>Licencia</th>
+										<th>NOMBRE</th>
+										<th>CI</th>
+										<th>FECHA AFILIACION</th>
+										<th>LICENCIA</th>
 
                                         <th></th>
                                     </tr>
@@ -70,13 +62,7 @@
                                             
 											<td>{{ $chofere->nombre }}</td>
 											<td>{{ $chofere->ci }}</td>
-<!--
-											<td>{{ $chofere->direccion }}</td>
-											<td>{{ $chofere->fnacimiento }}</td>
 											<td>{{ $chofere->fafiliacion }}</td>
-											<td>{{ $chofere->sexo }}</td>
-											<td>{{ $chofere->garantia }}</td>
--->
 											<td>{{ $chofere->licencia }}</td>
 
                                             <td>

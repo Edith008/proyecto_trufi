@@ -13,7 +13,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Create Vehiculo</span>
+                        <span class="card-title">Ingresar datos del Vehiculo</span>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('vehiculos.store') }}"  role="form" enctype="multipart/form-data">
