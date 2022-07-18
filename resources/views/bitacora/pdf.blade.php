@@ -11,7 +11,12 @@
 
 <h2>Asociacion de Trufi 27 de Marzo - Bitacora </h2>
 
+<h4>Reporte generado en fecha: {{$fecha}} </h4>
+<h4>hora: {{$hora}} </h4>
+<h4>Por el usuario usuario: {{ Auth::user()->name }} </h4>
 
+
+<!--
     <table class="table table-striped table-hover">
         <thead class="thead">
             <tr>
@@ -29,6 +34,8 @@
             </tr>
         </tbody>
     </table>
+    -->
+
     <table class="table table-striped table-hover">
         <thead class="thead">
         
