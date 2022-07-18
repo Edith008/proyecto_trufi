@@ -13,7 +13,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Create Socio</span>
+                        <span class="card-title">Registro de nuevo socio </span>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('socios.store') }}"  role="form" enctype="multipart/form-data">
