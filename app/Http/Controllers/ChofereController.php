@@ -32,14 +32,12 @@ class ChofereController extends Controller
 
     public function pdf()
     {
-        $TiempoActual = Carbon::now();
-        $hora = $TiempoActual->toTimeString();
-        $fecha = $TiempoActual->format('d-m-Y');
-
         $choferes = Chofere::paginate();
-        $pdf = PDF::loadView('chofere.pdf',['choferes'=>$choferes], compact('hora','fecha','choferes'));
+        
+        $pdf = PDF::loadView('chofere.pdf',['choferes'=>$choferes]);
        // $pdf->loadHTML('<h1> test </h1>');
         //return $pdf->stream();
+        
         return $pdf->download('_choferes.pdf');
 
     //    return view('chofere.pdf', compact('choferes'));   
