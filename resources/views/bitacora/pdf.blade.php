@@ -13,7 +13,7 @@
 
 <h4>Reporte generado en fecha: {{$fecha}} <br> 
     hora: {{$hora}} <br>
-    Por el usuario usuario: {{ Auth::user()->name }} </h4>
+    usuario: {{ Auth::user()->name }} </h4>
 
 
 <!--
