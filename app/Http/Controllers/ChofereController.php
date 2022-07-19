@@ -145,7 +145,7 @@ class ChofereController extends Controller
         $chofere = Chofere::find($id);
 
         //CODIGO PARA LA BITACORA
-        $detalle = "Se ELIMINÓ los datos de CHOFER: ".$chofer->nombre;
+        $detalle = "Se ELIMINÓ los datos de CHOFER: ".$chofere->nombre;
         app(BitacoraController::class)->registrar($detalle);
         //
 
