@@ -13,28 +13,8 @@
 
 <h4>Reporte generado en fecha: {{$fecha}} <br> 
     hora: {{$hora}} <br>
-    usuario: {{ Auth::user()->name }} </h4>
-
-
-<!--
-    <table class="table table-striped table-hover">
-        <thead class="thead">
-            <tr>
-                <th>Fecha</th>
-                <th>Hora</th>
-                <th>Usuario</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{ $fecha }}</td>
-				<td>{{ $hora }}</td>
-				<td>{{ Auth::user()->name }}</td>
-
-            </tr>
-        </tbody>
-    </table>
-    -->
+    usuario: {{ Auth::user()->name }}
+</h4>
 
     <table class="table table-striped table-hover">
         <thead class="thead">

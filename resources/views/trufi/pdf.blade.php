@@ -14,8 +14,10 @@
 <h2>
     <center>Reporte de Trufis</center>
 </h2>
-<h4>Reporte generado en fecha {{$fecha}} , a horas {{$hora}},
-     a cargo del usuario {{ Auth::user()->name }}.
+
+<h4>Reporte generado en fecha: {{$fecha}} <br> 
+    hora: {{$hora}} <br>
+    usuario: {{ Auth::user()->name }}
 </h4>
 
     <table class="table table-striped table-hover">
