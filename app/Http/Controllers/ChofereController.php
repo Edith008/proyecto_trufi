@@ -40,7 +40,7 @@ class ChofereController extends Controller
         $choferes = Chofere::where('nombre','like','%'.$buscarpor.'%')
                              ->orWhere('ci','like','%'.$buscarpor.'%')->paginate();
        
-        $pdf = PDF::loadView('chofere.pdf',['choferes'=>$choferes],compact('hora','fecha','socios'));
+        $pdf = PDF::loadView('chofere.pdf',['choferes'=>$choferes],compact('hora','fecha','choferes'));
         return $pdf->download('_choferes.pdf');
 
 //        $choferes = Chofere::paginate();
