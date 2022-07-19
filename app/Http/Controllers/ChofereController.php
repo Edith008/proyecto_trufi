@@ -30,7 +30,7 @@ class ChofereController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * $choferes->perPage());
     }
 
-    public function pdf()
+    public function pdf(Request $request)
     {
         $TiempoActual = Carbon::now();
         $hora = $TiempoActual->toTimeString();
@@ -44,7 +44,7 @@ class ChofereController extends Controller
         return $pdf->download('_choferes.pdf');
 
 //        $choferes = Chofere::paginate();
-        
+
 //        $pdf = PDF::loadView('chofere.pdf',['choferes'=>$choferes]);
         //$pdf->loadHTML('<h1> test </h1>');
         //return $pdf->stream();
